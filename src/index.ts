@@ -1,4 +1,20 @@
-import { parse, visit } from 'graphql'
+import { graphql, parse, visit, buildASTSchema, GraphQLSchema, GraphQLObjectType, GraphQLString } from 'graphql'
+
+const UserType = new GraphQLObjectType({
+  name: 'user',
+  fields: {
+    name: {
+      type: GraphQLString,
+    },
+    uuid: {
+      type: GraphQLString
+    }
+  }
+})
+
+const AppGraphQLSchema = new GraphQLSchema({
+  query: UserType
+})
 
 const query = `
   query USER_LIST {
@@ -11,6 +27,10 @@ const query = `
 `
 
 const ast = parse(query)
+
+graphql({
+  schema: 
+}) //?
 
 ast
 
